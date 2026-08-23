@@ -42,7 +42,12 @@ const WindowWrapper = (Component, windowKey) => {
 
     useGSAP(() => {
       const el = ref.current
-      const [instance] = Draggable.create(el, { onPress: () => focusWindow(windowKey) })
+      const header = el.querySelector('#window-header')
+      const [instance] = Draggable.create(el, { 
+        trigger: header || el,
+        onPress: () => focusWindow(windowKey),
+        allowNativeTouchScrolling: true
+      })
 
       return () => instance.kill()
     }, [])

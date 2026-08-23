@@ -31,13 +31,23 @@ body {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
 }
 
+@utility ios-glass {
+  background-color: rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5), 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
 @layer base {
   main {
     @apply w-dvw h-dvh overflow-hidden;
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+    @apply flex justify-between items-center p-2 px-5 select-none ios-glass;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -74,11 +84,11 @@ body {
     @apply absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 z-50 select-none flex flex-col items-center gap-4 w-max;
 
     .search-pill {
-      @apply bg-white/20 backdrop-blur-md rounded-full px-5 py-2 text-xs text-white/90 flex items-center gap-2 shadow-sm border border-white/20 sm:hidden cursor-pointer w-fit;
+      @apply ios-glass rounded-full px-5 py-2 text-xs text-white/90 flex items-center gap-2 sm:hidden cursor-pointer w-fit;
     }
 
     .dock-container {
-      @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1 sm:p-1.5 flex items-end gap-1 sm:gap-1.5;
+      @apply ios-glass justify-between rounded-[28px] p-2 sm:p-3 flex items-end gap-2 sm:gap-3;
     }
 
     .tooltip {
