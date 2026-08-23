@@ -2,7 +2,7 @@ import gsap from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 
 import { Dock, Home, Navbar, Welcome } from '#components'
-import { Finder, Resume, Safari, Terminal, Text ,ImageShow, Contact} from '#windows'
+import { Finder, Resume, Safari, Terminal, Text ,ImageShow, Contact, Photos} from '#windows'
 
 const App = () => {
   gsap.registerPlugin(Draggable)
@@ -19,6 +19,7 @@ const App = () => {
       <Finder/>
       <Text/>
       <ImageShow/>
+      <Photos/>
       <Contact/>
 
       <Home/>
