@@ -39,6 +39,16 @@ body {
     0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 @layer base {
   main {
     @apply w-dvw h-dvh overflow-hidden;
