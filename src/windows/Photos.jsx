@@ -53,25 +53,26 @@ const Photos = () => {
         </div>
 
         {/* Floating Bottom Nav */}
-        <div className='fixed bottom-6 left-1/2 -translate-x-1/2 z-30'>
-          <div className='ios-glass bg-[#1c1c1e]/80 backdrop-blur-3xl border border-white/10 rounded-full flex items-center p-1.5 shadow-2xl'>
-            
-            <button className='flex flex-col items-center justify-center w-20 py-2 rounded-full bg-white/10 text-white'>
-              <ImageIcon size={22} className="mb-1" />
-              <span className='text-[10px] font-medium'>Library</span>
+        <div className='fixed bottom-8 left-0 w-full px-6 flex justify-between items-center z-30 pointer-events-none'>
+          
+          {/* Left Pill (Library & Collections) */}
+          <div className='bg-[#f9f9f9]/95 backdrop-blur-3xl shadow-2xl rounded-full flex items-center p-1.5 pointer-events-auto border border-black/5'>
+            <button className='flex flex-col items-center justify-center w-28 py-2 rounded-full bg-white shadow-sm text-blue-500'>
+              <ImageIcon size={24} className="mb-1 stroke-[2]" />
+              <span className='text-[11px] font-semibold tracking-wide'>Library</span>
             </button>
             
-            <button className='flex flex-col items-center justify-center w-24 py-2 rounded-full text-gray-400 hover:text-white transition-colors'>
-              <Layers size={22} className="mb-1" />
-              <span className='text-[10px] font-medium'>Collections</span>
+            <button className='flex flex-col items-center justify-center w-28 py-2 rounded-full text-black hover:bg-black/5 transition-colors'>
+              <Layers size={24} className="mb-1 stroke-[1.5]" />
+              <span className='text-[11px] font-medium tracking-wide'>Collections</span>
             </button>
-            
-            <button className='flex flex-col items-center justify-center w-20 py-2 rounded-full text-gray-400 hover:text-white transition-colors'>
-              <Search size={22} className="mb-1" />
-              <span className='text-[10px] font-medium'>Search</span>
-            </button>
-
           </div>
+          
+          {/* Right Search Button */}
+          <button className='bg-[#f9f9f9]/95 backdrop-blur-3xl shadow-2xl rounded-full size-[60px] flex items-center justify-center text-black pointer-events-auto border border-black/5 hover:bg-white transition-colors'>
+            <Search size={26} className="stroke-[2]" />
+          </button>
+
         </div>
       </div>
     </>
