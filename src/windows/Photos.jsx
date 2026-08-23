@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import WindowWrapper from '#hoc/WindowWrapper'
 import { WindowControls } from '#components'
 import { gallery } from '#constants'
-import { Search, Image as ImageIcon, Layers, ListFilter } from 'lucide-react'
+import { Search, Image as ImageIcon, Layers, Heart } from 'lucide-react'
 
 const Photos = () => {
   // Duplicate gallery items to create a dense grid
@@ -14,28 +14,20 @@ const Photos = () => {
   return (
     <>
       {/* Top Header Controls (macOS style window dots) */}
-      <div id='window-header' className="bg-[#0e0e0e] border-b border-white/10">
+      <div id='window-header' className="bg-[#1c1c1e] border-b border-black/50 z-50 relative">
         <WindowControls target="photos" />
         <p className="text-white/50 text-xs font-semibold">Photos</p>
       </div>
 
-      <div className='relative w-full h-full bg-black overflow-y-auto pb-32 no-scrollbar'>
+      <div className='relative w-full h-full bg-black overflow-y-auto pb-24 no-scrollbar'>
         
         {/* iOS Sticky Header */}
-        <div className='sticky top-0 z-20 px-4 pt-6 pb-2 ios-glass border-b border-white/5 flex justify-between items-end'>
-          <div>
-            <h1 className='text-white text-3xl font-bold tracking-tight'>Library</h1>
-            <p className='text-gray-400 text-xs mt-0.5 font-medium'>1,908 Items</p>
-          </div>
-          
-          <div className='flex items-center gap-2 mb-1'>
-            <button className='bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full size-8 flex items-center justify-center text-white'>
-              <ListFilter size={16} />
-            </button>
-            <button className='bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full px-4 py-1.5 text-white text-sm font-semibold'>
-              Select
-            </button>
-          </div>
+        <div className='sticky top-0 z-20 px-4 h-12 bg-[#1c1c1e]/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center'>
+          <div className="w-16"></div> {/* Spacer for alignment */}
+          <h1 className='text-white text-base font-semibold tracking-wide'>All Photos</h1>
+          <button className='text-blue-500 text-[15px] font-medium w-16 text-right'>
+            Select
+          </button>
         </div>
 
         {/* Image Grid */}
@@ -52,25 +44,27 @@ const Photos = () => {
           ))}
         </div>
 
-        {/* Floating Bottom Nav */}
-        <div className='fixed bottom-8 left-0 w-full px-6 flex justify-between items-center z-30 pointer-events-none'>
+        {/* iOS Classic Bottom Nav Bar */}
+        <div className='fixed bottom-0 w-full bg-[#1c1c1e]/80 backdrop-blur-xl border-t border-white/10 pb-6 pt-2 px-2 flex justify-around items-center z-30 pointer-events-auto'>
           
-          {/* Left Pill (Library & Collections) */}
-          <div className='bg-white shadow-2xl rounded-full flex items-center p-1.5 pointer-events-auto border border-black/5'>
-            <button className='flex flex-col items-center justify-center w-28 py-2 rounded-full bg-white shadow-md border border-black/5 text-blue-500'>
-              <ImageIcon size={20} className="mb-1 stroke-[2.5]" />
-              <span className='text-[11px] font-semibold tracking-wide'>Library</span>
-            </button>
-            
-            <button className='flex flex-col items-center justify-center w-28 py-2 rounded-full text-black hover:bg-black/5 transition-colors'>
-              <Layers size={20} className="mb-1 stroke-[2]" />
-              <span className='text-[11px] font-medium tracking-wide'>Collections</span>
-            </button>
-          </div>
+          <button className='flex flex-col items-center justify-center w-16 text-blue-500'>
+            <ImageIcon size={24} className="mb-1 stroke-[1.5] fill-blue-500/20" />
+            <span className='text-[10px] font-medium'>Photos</span>
+          </button>
           
-          {/* Right Search Button */}
-          <button className='bg-white shadow-2xl rounded-full size-[56px] flex items-center justify-center text-black pointer-events-auto border border-black/5 hover:bg-gray-50 transition-colors'>
-            <Search size={22} className="stroke-[2.5]" />
+          <button className='flex flex-col items-center justify-center w-16 text-gray-400 hover:text-white transition-colors'>
+            <Heart size={24} className="mb-1 stroke-[1.5]" />
+            <span className='text-[10px] font-medium'>For You</span>
+          </button>
+
+          <button className='flex flex-col items-center justify-center w-16 text-gray-400 hover:text-white transition-colors'>
+            <Layers size={24} className="mb-1 stroke-[1.5]" />
+            <span className='text-[10px] font-medium'>Albums</span>
+          </button>
+          
+          <button className='flex flex-col items-center justify-center w-16 text-gray-400 hover:text-white transition-colors'>
+            <Search size={24} className="mb-1 stroke-[2]" />
+            <span className='text-[10px] font-medium'>Search</span>
           </button>
 
         </div>
