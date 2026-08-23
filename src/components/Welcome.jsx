@@ -27,30 +27,36 @@ const setupTextHover = (container, type) => {
       fontVariationSettings: `"wght" ${weight}`
     })
   }
-  const handleMouseMove = (e) => {
+  const handleMove = (clientX) => {
     const { left } = container.getBoundingClientRect();
-    const mouseX = e.clientX - left
+    const mouseX = clientX - left
 
     letters.forEach((letter) => {
       const { left: l, width: w } = letter.getBoundingClientRect();
       const distance = Math.abs(mouseX - (l - left + w / 2))
       const intensity = Math.exp(-(distance ** 2) / 2000)
 
-
       animateLetters(letter, min + (max - min) * intensity)
     });
   }
 
-  const handleMouseLeave = () => letters.forEach((letter) => animateLetters(letter, base, 0.3))
+  const handleMouseMove = (e) => handleMove(e.clientX)
+  const handleTouchMove = (e) => handleMove(e.touches[0].clientX)
 
-
+  const handleLeave = () => letters.forEach((letter) => animateLetters(letter, base, 0.3))
 
   container.addEventListener("mousemove", handleMouseMove)
-  container.addEventListener("mouseleave", handleMouseLeave)
+  container.addEventListener("mouseleave", handleLeave)
+  container.addEventListener("touchmove", handleTouchMove, { passive: true })
+  container.addEventListener("touchstart", handleTouchMove, { passive: true })
+  container.addEventListener("touchend", handleLeave)
 
   return () => {
     container.removeEventListener("mousemove", handleMouseMove);
-    container.removeEventListener("mouseleave", handleMouseLeave)
+    container.removeEventListener("mouseleave", handleLeave)
+    container.removeEventListener("touchmove", handleTouchMove)
+    container.removeEventListener("touchstart", handleTouchMove)
+    container.removeEventListener("touchend", handleLeave)
   }
 }
 
