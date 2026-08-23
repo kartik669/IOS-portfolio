@@ -13,6 +13,7 @@ const WindowWrapper = (Component, windowKey) => {
     const windowState = windows?.[windowKey]
 
     const isOpen = windowState?.isOpen ?? false
+    const isMaximized = windowState?.isMaximized ?? false
     const zIndex = windowState?.zIndex ?? 0
 
 
@@ -67,7 +68,7 @@ const WindowWrapper = (Component, windowKey) => {
         id={windowKey}
         ref={ref}
         style={{ zIndex }}
-        className="absolute"
+        className={`absolute ${isMaximized ? 'window-maximized' : ''}`}
       >
         <Component {...props} />
       </section>
